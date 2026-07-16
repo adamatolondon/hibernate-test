@@ -1,5 +1,6 @@
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.Customer;
 import com.test.hibernate.model.DeliveryType;
 
@@ -16,6 +17,7 @@ import com.test.hibernate.model.Order;
 import com.test.hibernate.model.OrderStatus;
 import com.test.hibernate.model.Product;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +34,7 @@ public class OrderTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("order_many_to_many", PersistenceUnitProperties.getProperties());
     }
 
@@ -105,6 +107,15 @@ public class OrderTest {
         Assertions.assertNotNull(o.getStatus());
         Assertions.assertEquals(OrderStatus.APPROVED, o.getStatus());
 
+        tx.begin();
+        em.remove(o);
+        em.remove(order2);
+        em.remove(customer);
+        em.remove(p);
+        em.remove(product2);
+        em.remove(product3);
+        tx.commit();
+
         em.close();
     }
 
@@ -167,6 +178,16 @@ public class OrderTest {
         optional = o.getProducts().stream().filter(p -> p.getName().equals("Large Panel")).findFirst();
         Assertions.assertTrue(optional.isPresent());
         Assertions.assertEquals(60.0f, optional.get().getPrice());
+        tx.commit();
+
+        tx.begin();
+        em.remove(o);
+        em.remove(order2);
+        em.remove(customer);
+        em.remove(product1);
+        em.remove(product2);
+        em.remove(product3);
+        em.remove(product4);
         tx.commit();
 
         em.close();

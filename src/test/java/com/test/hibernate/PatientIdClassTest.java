@@ -1,5 +1,6 @@
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.Doctor;
 import com.test.hibernate.model.Patient;
 import org.junit.jupiter.api.AfterAll;
@@ -14,13 +15,14 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
 import java.util.List;
 
 public class PatientIdClassTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("idclass", PersistenceUnitProperties.getProperties());
     }
 

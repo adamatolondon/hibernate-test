@@ -1,5 +1,6 @@
 package com.test.hibernate;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,7 +28,7 @@ public class OtmEmbIdBookingTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("otm_emb_booking", PersistenceUnitProperties.getProperties());
     }
 

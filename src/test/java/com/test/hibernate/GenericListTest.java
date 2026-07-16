@@ -5,12 +5,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.test.hibernate.model.GenericList;
+
+import java.io.IOException;
 
 /**
  * @author Antonio Damato <anto.damato@gmail.com>
@@ -20,7 +23,7 @@ public class GenericListTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("generic_list", PersistenceUnitProperties.getProperties());
     }
 

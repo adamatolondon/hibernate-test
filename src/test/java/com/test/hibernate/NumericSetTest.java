@@ -1,5 +1,6 @@
 package com.test.hibernate;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.number.IsCloseTo;
 import org.junit.jupiter.api.AfterAll;
@@ -25,7 +27,7 @@ public class NumericSetTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("numeric_set", PersistenceUnitProperties.getProperties());
     }
 

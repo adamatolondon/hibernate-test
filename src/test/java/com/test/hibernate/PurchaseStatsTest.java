@@ -5,12 +5,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.test.hibernate.model.PurchaseStats;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
@@ -32,7 +34,7 @@ public class PurchaseStatsTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("purchase_stats", PersistenceUnitProperties.getProperties());
     }
 

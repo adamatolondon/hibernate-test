@@ -1,5 +1,6 @@
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.StoreItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -21,7 +23,7 @@ public class PessimisticLockTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("items", PersistenceUnitProperties.getProperties());
     }
 

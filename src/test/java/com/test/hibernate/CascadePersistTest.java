@@ -5,6 +5,7 @@
  */
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.JobCandidate;
 import com.test.hibernate.model.SkillSet;
 
@@ -17,6 +18,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 /**
  * @author Antonio Damato <anto.damato@gmail.com>
  */
@@ -25,7 +28,7 @@ public class CascadePersistTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("cascade_persist", PersistenceUnitProperties.getProperties());
     }
 

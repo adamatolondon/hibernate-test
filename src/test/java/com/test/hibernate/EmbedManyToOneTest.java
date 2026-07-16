@@ -5,6 +5,7 @@
  */
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.JobEmployee;
 import com.test.hibernate.model.JobEmployeeDetails;
 import com.test.hibernate.model.JobInfo;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -29,7 +31,7 @@ public class EmbedManyToOneTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("embed_many_to_one", PersistenceUnitProperties.getProperties());
     }
 

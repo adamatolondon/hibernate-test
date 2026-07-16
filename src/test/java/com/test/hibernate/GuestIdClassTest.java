@@ -1,5 +1,6 @@
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.GuestBooking;
 import com.test.hibernate.model.Guest;
 import com.test.hibernate.model.GuestPk;
@@ -13,6 +14,7 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class GuestIdClassTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("guestidclass", PersistenceUnitProperties.getProperties());
     }
 

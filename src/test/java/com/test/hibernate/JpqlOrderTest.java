@@ -5,6 +5,7 @@
  */
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.LineItem;
 import com.test.hibernate.model.SimpleOrder;
 import com.test.hibernate.model.SimpleProduct;
@@ -13,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
@@ -28,7 +30,7 @@ public class JpqlOrderTest {
     private static String testDb;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("simple_order", PersistenceUnitProperties.getProperties());
         testDb = System.getProperty("hibernate.test");
     }

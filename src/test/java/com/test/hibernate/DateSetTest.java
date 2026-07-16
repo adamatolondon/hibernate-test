@@ -5,6 +5,7 @@
  */
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.DateSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.io.IOException;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.*;
@@ -32,7 +34,7 @@ public class DateSetTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("date_set", PersistenceUnitProperties.getProperties());
     }
 

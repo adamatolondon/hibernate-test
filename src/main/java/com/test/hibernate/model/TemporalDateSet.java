@@ -44,7 +44,7 @@ public class TemporalDateSet {
     @Temporal(TemporalType.DATE)
     private Calendar calendarToDate;
 
-//    @Column(name = "calendartotime")
+    //    @Column(name = "calendartotime")
 //    @Temporal(TemporalType.TIME)
 //    private Calendar calendarToTime;
     @Column(name = "calendartotimestamp")
@@ -52,46 +52,46 @@ public class TemporalDateSet {
     private Calendar calendarToTimestamp;
 
     public Long getId() {
-	return id;
+        return id;
     }
 
     public void setId(Long id) {
-	this.id = id;
+        this.id = id;
     }
 
     public Date getDateToDate() {
-	return dateToDate;
+        return dateToDate;
     }
 
     public void setDateToDate(Date dateToDate) {
-	this.dateToDate = dateToDate;
+        this.dateToDate = dateToDate;
     }
 
     public Date getDateToTime() {
-	return dateToTime;
+        return dateToTime;
     }
 
     public void setDateToTime(Date dateToTime) {
-	this.dateToTime = dateToTime;
+        this.dateToTime = dateToTime;
     }
 
     public Date getDateToTimestamp() {
-	return dateToTimestamp;
+        return dateToTimestamp;
     }
 
     public void setDateToTimestamp(Date dateToTimestamp) {
-	this.dateToTimestamp = dateToTimestamp;
+        this.dateToTimestamp = dateToTimestamp;
     }
 
     public Calendar getCalendarToDate() {
-	return calendarToDate;
+        return calendarToDate;
     }
 
     public void setCalendarToDate(Calendar calendarToDate) {
-	this.calendarToDate = calendarToDate;
+        this.calendarToDate = calendarToDate;
     }
 
-//    public Calendar getCalendarToTime() {
+    //    public Calendar getCalendarToTime() {
 //	return calendarToTime;
 //    }
 //
@@ -100,11 +100,11 @@ public class TemporalDateSet {
 //    }
 //
     public Calendar getCalendarToTimestamp() {
-	return calendarToTimestamp;
+        return calendarToTimestamp;
     }
 
     public void setCalendarToTimestamp(Calendar calendarToTimestamp) {
-	this.calendarToTimestamp = calendarToTimestamp;
+        this.calendarToTimestamp = calendarToTimestamp;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.Citizen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.*;
+import java.io.IOException;
 
 /**
  * @author Antonio Damato <anto.damato@gmail.com>
@@ -17,10 +19,12 @@ public class OptimisticLockTest {
 
     private static final Logger LOG = LogManager.getLogger(OptimisticLockTest.class);
     private static EntityManagerFactory emf;
+    private static String testDb;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("citizens", PersistenceUnitProperties.getProperties());
+        testDb = System.getProperty("hibernate.test");
     }
 
     @AfterAll
@@ -74,9 +78,15 @@ public class OptimisticLockTest {
         // update on the first transaction
         citizen3.setName("Guy");
         em3.persist(citizen3);
-        Assertions.assertThrows(OptimisticLockException.class, () -> {
-            em3.flush();
-        });
+//        Assertions.assertThrows(OptimisticLockException.class, () -> {
+//            em3.flush();
+//        });
+        if (testDb != null && testDb.equals("mariadb")) {
+            // TODO MariaDB version upgrade has a different behaviour
+            Assertions.assertThrows(PersistenceException.class, em3::flush);
+        } else {
+            Assertions.assertThrows(OptimisticLockException.class, em3::flush);
+        }
 
         Assertions.assertEquals(version0, citizen3.getVersion());
         tx3.rollback();

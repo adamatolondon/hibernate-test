@@ -5,12 +5,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.test.hibernate.model.onetoone.City;
 import com.test.hibernate.model.onetoone.Region;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Query;
@@ -29,7 +31,7 @@ public class OneToOneUniTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("cities_uni", PersistenceUnitProperties.getProperties());
     }
 
@@ -238,9 +240,9 @@ public class OneToOneUniTest {
         Assertions.assertNotNull(avgPopulation);
         if (avgPopulation instanceof BigDecimal) {
             // Oracle
-            Assertions.assertEquals(new BigDecimal(381738), avgPopulation);
+            Assertions.assertEquals(381738f, ((BigDecimal) avgPopulation).floatValue());
         } else
-            Assertions.assertEquals(381738, avgPopulation);
+            Assertions.assertEquals(381738, ((Number)avgPopulation).intValue());
 
         em.remove(yorkCity);
         em.remove(manchesterCity);

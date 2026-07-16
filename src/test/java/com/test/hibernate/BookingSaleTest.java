@@ -1,8 +1,10 @@
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.Booking;
 import com.test.hibernate.model.BookingSale;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -29,7 +31,7 @@ public class BookingSaleTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("booking_sale", PersistenceUnitProperties.getProperties());
     }
 
