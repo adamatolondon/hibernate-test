@@ -5,9 +5,11 @@
  */
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.RandomData;
 import com.test.hibernate.model.RandomGroup;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +33,7 @@ public class LongRunningTest {
     private final int ngroups = 100;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("long_running", PersistenceUnitProperties.getProperties());
     }
 

@@ -1,5 +1,6 @@
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.onetomany.Item;
 import com.test.hibernate.model.onetomany.Item_;
 import com.test.hibernate.model.onetomany.Store;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.persistence.*;
 import javax.persistence.criteria.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,7 +30,7 @@ public class OneToManyUniTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("onetomany_uni",
                 PersistenceUnitProperties.getProperties());
     }
@@ -616,6 +618,7 @@ public class OneToManyUniTest {
         Root<Store> root = cq.from(Store.class);
         Join<Object, Object> item = root.join("items", JoinType.LEFT);
 
+        cq.orderBy(cb.asc(root.get("name")));
         cq.distinct(true);
         TypedQuery<Store> q = em.createQuery(cq);
         List<Store> stores = q.getResultList();

@@ -1,19 +1,11 @@
 package com.test.hibernate;
 
-import com.test.hibernate.model.onetomany.Store;
+import com.test.hibernate.connection.PersistenceUnitProperties;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Root;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,6 +15,7 @@ import com.test.hibernate.model.Property;
 import com.test.hibernate.model.PropertyOwner;
 import com.test.hibernate.model.PropertyType;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.persistence.PersistenceException;
@@ -37,7 +30,7 @@ public class PropertyTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("property_many_to_many_uni",
                 PersistenceUnitProperties.getProperties());
     }

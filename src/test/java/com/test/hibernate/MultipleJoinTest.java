@@ -1,5 +1,6 @@
 package com.test.hibernate;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import com.test.hibernate.model.Artist;
 import com.test.hibernate.model.Movie;
 import com.test.hibernate.model.Song;

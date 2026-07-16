@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import com.test.hibernate.model.Address;
 import com.test.hibernate.model.Citizen;
+
+import java.io.IOException;
 
 /**
  * @author Antonio Damato <anto.damato@gmail.com>
@@ -21,7 +24,7 @@ public class RemoveTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("citizens", PersistenceUnitProperties.getProperties());
     }
 

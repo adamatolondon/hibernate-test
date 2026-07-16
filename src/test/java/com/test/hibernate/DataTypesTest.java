@@ -1,9 +1,11 @@
 package com.test.hibernate;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import com.test.hibernate.connection.PersistenceUnitProperties;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -18,7 +20,7 @@ public class DataTypesTest {
     private static EntityManagerFactory emf;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
         emf = Persistence.createEntityManagerFactory("data_types", PersistenceUnitProperties.getProperties());
     }
 
